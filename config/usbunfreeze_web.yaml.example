@@ -1,0 +1,6 @@
+config:
+  sqs:
+    queue_name: usbunfreeze_queue
+    access_key_id: YOURID
+    secret_access_key: YOURKEY
+  session_secret: SECRET

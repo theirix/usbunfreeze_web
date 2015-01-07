@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title USB Unfreeze
+    = css :application
+    %meta{ :charset => "utf-8" }
+  %body
+    #container
+      %h1 Unfreeze your notebook
+
+      %p Recover your notebook from static shock that usually halts both keyboard and touchpad.
+
+      %p<
+        Send a signal to the notebook to launch the
+        %strong usbunfreeze
+        utility.
+
+      %form{:method => 'post'}
+        %button.button{:type => 'submit'}Unfreeze
+
+      %p
+        =styled_flash
