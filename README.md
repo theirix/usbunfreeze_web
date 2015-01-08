@@ -9,7 +9,7 @@ Web application for Usbunfreeze kit.
 
 UsbunfreezeWeb is a Sinatra/Rack application and can be used as a gem or as a server in local directory.
 
-### As a gem
+### As a gem (recommended)
 
 1. Install a gem
 
