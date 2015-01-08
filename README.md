@@ -1,10 +1,13 @@
 # UsbunfreezeWeb
 
+[![Gem Version](https://img.shields.io/gem/v/usbunfreeze_web.svg)](https://rubygems.org/gems/usbunfreeze_web)
+[![Dependency Status](https://gemnasium.com/theirix/usbunfreeze_web.svg)](https://gemnasium.com/theirix/usbunfreeze_web)
+
 Web application for Usbunfreeze kit.
 
 ## Installation
 
-OmniFiles is a Sinatra/Rack application and can be used as a gem or as a server in local directory.
+UsbunfreezeWeb is a Sinatra/Rack application and can be used as a gem or as a server in local directory.
 
 ### As a gem
 
@@ -18,10 +21,10 @@ OmniFiles is a Sinatra/Rack application and can be used as a gem or as a server 
 
         USBUNFREEZE_WEB_SETTINGS=/path/to/settings.yaml usbunfreeze_web
 Of course, you can provide any additional Thin options at command line or even a config with `-C /path/to/thin.yaml`.
-s
+
 ## As a rack app
 
-OmniFiles can be started using `config.ru` with you favourite Rack server.
+UsbunfreezeWeb can be started using `config.ru` with you favourite Rack server.
 
 1. Clone a git repo
 
@@ -40,6 +43,8 @@ OmniFiles can be started using `config.ru` with you favourite Rack server.
 Settings file template can be found at `config/settings.yaml.example`.
 
 Configure Amazon AWS SQS queue and place access, secret key and queue name to the config.
+
+**NOTE**: server does not work properly with sinatra-assetpack asset packaging in production mode. Use development instead.
 
 ## Usage
 
