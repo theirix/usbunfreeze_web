@@ -26,5 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "settingslogic", "~> 2.0.0"
   spec.add_runtime_dependency "thin", "~> 1.6.0"
   spec.add_runtime_dependency "sinatra-flash", "~> 0.3.0"
-  spec.add_runtime_dependency "aws-sdk-v1", "~> 1.60.0"
+  spec.add_runtime_dependency "aws-sdk", "~> 2"
 end

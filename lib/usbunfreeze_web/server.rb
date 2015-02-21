@@ -7,7 +7,7 @@ require 'uri'
 require 'settingslogic'
 require 'rack'
 require 'haml'
-require 'aws-sdk-v1'
+require 'aws-sdk'
 
 module UsbunfreezeWeb
 
@@ -56,18 +56,18 @@ module UsbunfreezeWeb
     def send_command
       logger.info "Sending command to SQS"
 
-      sqs = AWS::SQS.new(access_key_id: Settings.sqs.access_key_id,
-        secret_access_key: Settings.sqs.secret_access_key)
+      sqs = Aws::SQS::Client.new(region: Settings.sqs.region,
+                                 access_key_id: Settings.sqs.access_key_id,
+                                 secret_access_key: Settings.sqs.secret_access_key)
       raise 'No SQS object' unless sqs
 
       logger.info "Get queue '#{Settings.sqs.queue_name}' ..."
-      q = sqs.queues.named(Settings.sqs.queue_name)
+      q = sqs.get_queue_url(queue_name: Settings.sqs.queue_name)
       raise 'Cannot get queue' unless q
-      raise 'Queue does not exist' unless q.exists?
 
-      message = {message: 'unfreeze'}.to_json
-      m = q.send_message message
-      logger.info "Successfully sent id #{m.id}"
+      message = {message: 'unfreeze', timestamp: Time.now.iso8601}.to_json
+      m = sqs.send_message(queue_url: q.data.queue_url, message_body: message)
+      logger.info "Successfully sent id #{m.message_id}"
     end
 
   end
