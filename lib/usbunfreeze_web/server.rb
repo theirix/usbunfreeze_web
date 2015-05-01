@@ -8,6 +8,7 @@ require 'settingslogic'
 require 'rack'
 require 'haml'
 require 'aws-sdk'
+require 'json'
 
 module UsbunfreezeWeb
 
