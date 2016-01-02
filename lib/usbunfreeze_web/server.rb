@@ -1,7 +1,8 @@
 # encoding: utf-8
 
-require 'sinatra'
-require 'sinatra/assetpack'
+require 'sinatra/base'
+require 'sprockets'
+require 'sprockets-helpers'
 require 'sinatra/flash'
 require 'uri'
 require 'settingslogic'
@@ -14,13 +15,21 @@ module UsbunfreezeWeb
 
   class App < Sinatra::Application
 
-    register Sinatra::AssetPack
-    assets do
-      css :application, [
-        '/usbunfreeze-assets/css/app.css'
-      ]
-      serve '/usbunfreeze-assets', from: 'app'
+    set :sprockets, Sprockets::Environment.new(root)
+    set :assets_prefix, '/usbunfreeze-assets'
+
+    configure do
+      Sprockets::Helpers.configure do |config|
+        config.environment = sprockets
+        config.prefix      = assets_prefix
+        config.digest      = true
+      end
+      sprockets.append_path 'assets/stylesheets'
+      sprockets.append_path 'assets/javascripts'
+      sprockets.css_compressor = :scss
     end
+
+    helpers Sprockets::Helpers
 
     enable :sessions
     set :session_secret, Settings.session_secret
@@ -33,7 +42,6 @@ module UsbunfreezeWeb
 
     # GET - an index page
     get '/usbunfreeze' do
-
       haml :usbunfreeze
     end
 

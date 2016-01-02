@@ -1,2 +1,9 @@
 require 'usbunfreeze_web'
-run UsbunfreezeWeb::App
+
+map UsbunfreezeWeb::App.assets_prefix do
+  run UsbunfreezeWeb::App.sprockets
+end
+
+map '/' do
+  run UsbunfreezeWeb::App
+end

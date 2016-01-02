@@ -27,6 +27,7 @@ body {
 	font-size:120%;
   outline:0;
 }
+
 .button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), color-stop(1, #d0451b));
 	background:-moz-linear-gradient(top, #bc3315 5%, #d0451b 100%);
@@ -36,6 +37,7 @@ body {
 	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
 	background-color:#bc3315;
 }
+
 .button:active {
 	position:relative;
 	top:1px;
